@@ -12,13 +12,13 @@ set -u
 
 GIT_BRANCH=${GIT_BRANCH:-master}
 GIT_BASEURL=${GIT_BASEURL:-https://github.com}
-GIT_GITOPS=${GIT_GITOPS:-multi-tenancy-gitops.git}
+GIT_GITOPS=${GIT_GITOPS:-thes-multi-tenancy-gitops.git}
 GIT_GITOPS_BRANCH=${GIT_GITOPS_BRANCH:-${GIT_BRANCH}}
-GIT_GITOPS_INFRA=${GIT_GITOPS_INFRA:-multi-tenancy-gitops-infra.git}
+GIT_GITOPS_INFRA=${GIT_GITOPS_INFRA:-thes-multi-tenancy-gitops-infra.git}
 GIT_GITOPS_INFRA_BRANCH=${GIT_GITOPS_INFRA_BRANCH:-${GIT_BRANCH}}
-GIT_GITOPS_SERVICES=${GIT_GITOPS_SERVICES:-multi-tenancy-gitops-services.git}
+GIT_GITOPS_SERVICES=${GIT_GITOPS_SERVICES:-thes-multi-tenancy-gitops-services.git}
 GIT_GITOPS_SERVICES_BRANCH=${GIT_GITOPS_SERVICES_BRANCH:-${GIT_BRANCH}}
-GIT_GITOPS_APPLICATIONS=${GIT_GITOPS_APPLICATIONS:-multi-tenancy-gitops-apps.git}
+GIT_GITOPS_APPLICATIONS=${GIT_GITOPS_APPLICATIONS:-thes-multi-tenancy-gitops-apps.git}
 GIT_GITOPS_APPLICATIONS_BRANCH=${GIT_GITOPS_APPLICATIONS_BRANCH:-${GIT_BRANCH}}
 GIT_GITOPS_NAMESPACE=${GIT_GITOPS_NAMESPACE:-openshift-gitops}
 HELM_REPOURL=${HELM_REPOURL:-https://charts.cloudnativetoolkit.dev}
@@ -33,7 +33,7 @@ echo "Setting kustomization patches to ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_AP
 find ${SCRIPTDIR}/../0-bootstrap -name '*.yaml' -print0 |
   while IFS= read -r -d '' File; do
     if grep -q "kind: Application\|kind: AppProject" "$File"; then
-      #echo "$File"
+      echo "$File"
       sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS}#${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS}#" $File
       sed -i'.bak' -e "s#\${GIT_GITOPS_BRANCH}#${GIT_GITOPS_BRANCH}#" $File
       sed -i'.bak' -e "s#\${GIT_BASEURL}/\${GIT_ORG}/\${GIT_GITOPS_INFRA}#${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_INFRA}#" $File
