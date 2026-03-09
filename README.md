@@ -76,14 +76,14 @@ The reference architecture for this GitOps workflow can be found [here](https://
     mkdir -p gitops-repos
     cd gitops-repos
     # Clone using SSH
-    git clone git@github.com:<GIT_ORG>/multi-tenancy-gitops.git
-    git clone git@github.com:<GIT_ORG>/multi-tenancy-gitops-infra.git
-    git clone git@github.com:<GIT_ORG>/multi-tenancy-gitops-services.git
+    git clone git@github.com:apic-demo/multi-tenancy-gitops.git
+    git clone git@github.com:apic-demo/multi-tenancy-gitops-infra.git
+    git clone git@github.com:apic-demo/multi-tenancy-gitops-services.git
     ```
 3. Update the default Git URl and branch references in your `multi-tenancy-gitops` repository by running the provided script `./scripts/set-git-source.sh` script.
     ```bash
     cd multi-tenancy-gitops
-    GIT_ORG=<GIT_ORG> GIT_BRANCH=master ./scripts/set-git-source.sh
+    GIT_ORG=apic-demo GIT_BRANCH=master ./scripts/set-git-source.sh
     git commit -m "Update Git URl and branch references"
     git push origin master
     ```
